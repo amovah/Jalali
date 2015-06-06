@@ -6,15 +6,15 @@ function Jalali() {
 }
 
 Jalali.prototype.convert = function(type, date) {
-	date = date.split(this.format[1]).map(function(item) { return parseInt(item); });
+	date = date.split(this.format[1]).map((item) => parseInt(item) );
 	var format = this.format.split(this.format[1]), r = {}, month = 1,
 			months = {
 				AD : [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
 				jalali : [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29]
 			};
-	date = (function() {
+	date = (() => {
 		var d = {};
-		date.forEach(function(item, index) { d[format[index]] = item; });
+		date.forEach((item, index) => d[format[index]] = item );
 		return d;
 	})();
 	if(type == 'AD') {
@@ -27,8 +27,8 @@ Jalali.prototype.convert = function(type, date) {
 	}
 	if(Math.floor(date.y / 4) != Math.floor((date.y - 1) / 4)) months.jalali[11] = 30;
 	if(Math.floor(r.y / 4) != Math.floor((r.y - 1) / 4)) months.AD[1] = 29;
-	r.d = (function() {
-		var additionalDays = ((date.y-1)*365 + months[type].slice(0, date.m - 1).reduce(function(a, b) { return a + b;}, 0) + date.d + Math.floor((date.y - 1)/4) + difference - Math.floor((r.y - 1) / 4)) % 365;
+	r.d = (() => {
+		var additionalDays = ((date.y-1)*365 + months[type].slice(0, date.m - 1).reduce((a, b) => a + b, 0) + date.d + Math.floor((date.y - 1)/4) + difference - Math.floor((r.y - 1) / 4)) % 365;
 		while(additionalDays > months[to][month] - 1) {
 			additionalDays -= months[to][month - 1];
 			month += 1;
