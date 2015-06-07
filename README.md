@@ -1,4 +1,4 @@
-#Jalali
+#jalali
 
 A Jalali converter to AD and vise versa.
 
