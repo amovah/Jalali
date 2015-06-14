@@ -1,9 +1,9 @@
 'use strict';
 
 function Jalali() {
-	this.format = 'y/m/d';
-
 	if (!(this instanceof Jalali)) return new Jalali();
+
+	this.format = 'y/m/d';
 }
 
 Jalali.prototype.convert = function (type, date) {
